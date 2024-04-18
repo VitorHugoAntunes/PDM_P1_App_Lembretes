@@ -30,6 +30,10 @@ export const LembreteEntrada = () => {
     setTarefas([...tarefas, novaTarefa]);
   };
 
+  const removerTudo = () => {
+    setTarefas([]);
+  }
+
   return (
     <div>
       <LembreteLista tarefas={tarefas} />
@@ -43,11 +47,20 @@ export const LembreteEntrada = () => {
         />
         <button
           type="submit"
-          className="mt-2  bg-primary rounded border border-primary p-2 text-light fw-bold"
+          className="mt-2 bg-primary rounded border border-primary p-2 text-light fw-bold"
         >
           OK
         </button>
       </form>
+      <div className="w100 d-flex flex-column">
+        <button
+          className="mt-2 bg-danger rounded border border-danger p-2 text-light fw-bold"
+          onClick={removerTudo}
+        >
+          Remover tudo
+        </button>
+
+      </div>
     </div>
   );
 };
