@@ -30,13 +30,17 @@ export const LembreteEntrada = () => {
     setTarefas([...tarefas, novaTarefa]);
   };
 
+  const removerTarefa = (id: number) => {
+    setTarefas(tarefas.filter(tarefa => tarefa.id !== id));
+  };
+
   const removerTudo = () => {
     setTarefas([]);
   }
 
   return (
     <div>
-      <LembreteLista tarefas={tarefas} />
+      <LembreteLista tarefas={tarefas} removerTarefa={removerTarefa} />
       <form className="w-100 d-flex flex-column" onSubmit={criarTarefa}>
         <input
           type="text"
