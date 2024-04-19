@@ -7,16 +7,9 @@ type Tarefa = {
   titulo: string;
 };
 
-
 export const LembreteEntrada = () => {
-  const [novoLembrete, setNovoLembrete] = useState<string>(''); 
+  const [novoLembrete, setNovoLembrete] = useState<string>('');
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
-
-  const criarTarefa = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    adicionarLembrete(novoLembrete); 
-    setNovoLembrete('');
-  };
 
   const tarefa = (event: ChangeEvent<HTMLInputElement>) => {
     setNovoLembrete(event.target.value);
@@ -24,7 +17,7 @@ export const LembreteEntrada = () => {
 
   const adicionarLembrete = (novoLembrete: string) => {
     const novaTarefa: Tarefa = {
-      id: Date.now(), 
+      id: Date.now(),
       titulo: novoLembrete,
     };
     setTarefas([...tarefas, novaTarefa]);
@@ -32,6 +25,17 @@ export const LembreteEntrada = () => {
 
   const removerTarefa = (id: number) => {
     setTarefas(tarefas.filter(tarefa => tarefa.id !== id));
+  };
+
+  const criarTarefa = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (novoLembrete === '') {
+      return;
+    } else {
+      adicionarLembrete(novoLembrete);
+    }
+    setNovoLembrete('');
   };
 
   const removerTudo = () => {
@@ -46,7 +50,7 @@ export const LembreteEntrada = () => {
           type="text"
           placeholder="Digite seu novo lembrete"
           className="mt-4 border border-secondary-subtle rounded p-2"
-          style={{outline: "none"}}
+          style={{ outline: "none" }}
           value={novoLembrete}
           onChange={tarefa}
         />
